@@ -125,7 +125,7 @@ if address:
         model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
         tools=[DuckDuckGoTools(), Newspaper4kTools()],
         description="You are a relief bot to search for flood-related news.",
-        instructions=[f"Search for flood-related news based on location: {address}."],
+        instructions=[f"Search for flood-related news of today only based on location: {address}."],
         markdown=True,
         show_tool_calls=True,
         add_datetime_to_instructions=True,
