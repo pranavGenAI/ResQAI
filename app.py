@@ -109,7 +109,7 @@ def generate_content(user_question, model, address):
     if user_question:
         prompt = ChatPromptTemplate.from_messages(
             [
-                SystemMessage(f
+                SystemMessage(
                     content=f"""You are ReliefBot, an agentic AI specializing in disaster response.ou have multiple specialized agents assisting in the process:
 
 Summarizer Agent – Aggregates and condenses extracted information.
