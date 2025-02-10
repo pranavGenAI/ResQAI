@@ -218,7 +218,7 @@ def main(address):
         ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
     )
 
-    user_question = st.text_input("Hi, how can I help you? (Try prompts like: We need help! There's a flood in my area.", key="user_question")
+    user_question = st.text_input("Hi, how can I help you? (Try prompts like: We need help! There's a flood in my area.)", key="user_question")
 
     if user_question:
         with st.spinner("Thinking..."):
