@@ -133,6 +133,13 @@ if address:
 
     # Display search results with a placeholder to avoid issues with live updates
     result_placeholder = st.empty()
-    result = agent.print_response(f"Search result for address: {address}", stream=True)
-    st.write(result)
-    result_placeholder.markdown(result)
+    output = ""
+    try:
+        # Iterate over the streaming response
+        for chunk in agent.print_response(f"Search result for address: {address}", stream=True):
+            output += chunk  # Accumulate the response chunks
+            st.write(output)  # Display the accumulated output in real-time
+    except groq.APIError as e:
+        st.error(f"API Error occurred: {e}")
+    except Exception as e:
+        st.error(f"Unexpected error: {e}")
