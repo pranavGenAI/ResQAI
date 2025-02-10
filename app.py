@@ -10,7 +10,7 @@ client = Groq(api_key=groq_api_key)
 
 # Set a default model
 if "groq_model" not in st.session_state:
-    st.session_state["groq_model"] = "groq-3.5-turbo"  # Example model, adjust as per Groq's models
+    st.session_state["groq_model"] = "llama-3.3-70b-versatile"  # Example model, adjust as per Groq's models
 
 # Initialize chat history
 if "messages" not in st.session_state:
