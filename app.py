@@ -18,7 +18,7 @@ from langchain_groq import ChatGroq
 groq_api_key = "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"  # Assuming you've stored this in secrets
 
 st.set_page_config(page_title="Fiscal Forecasting", page_icon=">", layout="wide")
-st.title("Get User Location in Streamlit")
+st.title("Relief Bot")
 
 # Fetch user location
 location = get_geolocation()
