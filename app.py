@@ -188,8 +188,11 @@ def main(address):
 
     if user_question:
         with st.spinner("Thinking..."):
-            generated_steps = generate_steps(user_question, model)
-            generated_text = generate_content(user_question, model, address)
+            time.sleep(1.5)
+            with st.spinner("Orchestrator agent invoked..."):
+                
+                generated_steps = generate_steps(user_question, model)
+                generated_text = generate_content(user_question, model, address)
 
         if generated_steps:
             st.write("Generated Steps: ")
@@ -201,11 +204,6 @@ def main(address):
             except json.decoder.JSONDecodeError as e:
                 st.error(f"Error parsing JSON: {str(e)}")
                 step_list = []
-
-            for step in step_list:
-                with st.expander(f"Step {step['step_number']}"):
-                    st.write(step['step_description'])
-                    time.sleep(1.5)  # Delay between each step
 
         if generated_text:
             st.markdown("### ReliefBot:")
