@@ -1,14 +1,16 @@
 import streamlit as st
-from openai import OpenAI
+from groq import Groq
 
-st.title("ChatGPT-like clone")
+st.title("ChatGPT-like clone with Groq")
 
-# Set OpenAI API key from Streamlit secrets
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+groq_api_key = "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"
+
+# Set Groq API key
+client = Groq(api_key=groq_api_key)
 
 # Set a default model
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+if "groq_model" not in st.session_state:
+    st.session_state["groq_model"] = "groq-3.5-turbo"  # Example model, adjust as per Groq's models
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -30,7 +32,7 @@ if prompt := st.chat_input("What is up?"):
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
-            model=st.session_state["openai_model"],
+            model=st.session_state["groq_model"],
             messages=[
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
