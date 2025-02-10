@@ -158,7 +158,7 @@ You will return only a JSON response structured as follows:
 ```json
 {
   "steps": [
-    '{"step": "<Step performed"},
+    '{"step": "<Step performed>"},
     '{"step": "<Step performed>"},
     '{"step": "<Step performed>"},
     '{"step": "Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data."}
