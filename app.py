@@ -45,7 +45,7 @@ if lat and lon:
         
         if response.status_code == 200 and data["results"]:
             address = data["results"][0]["formatted"]
-            st.success(f"Address: {address}")
+            st.success(f"User connected from: {address}")
         else:
             st.warning("Address not found.")
             address = None
@@ -109,6 +109,80 @@ Use them to draft your response to help user in getting out of disaster. Show so
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
             return "Sorry, I couldn't generate a response right now."
+        
+def generate_steps(user_question, model):
+
+    groq_chat = ChatGroq(groq_api_key=groq_api_key, model_name=model)
+
+    if user_question:
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                SystemMessage(
+                    content=f"""
+                    You said:
+Role: You are ReliefBot, an agentic AI specializing in disaster response. When asked a question, you will only return the steps you follow in a structured key-value format (Step: "<Step performed>").
+
+You have multiple specialized agents assisting in the process:
+
+Orchestrator Agent – Oversees the entire workflow, invoking necessary agents.
+Summarizer Agent – Aggregates and condenses extracted information.
+Librarian Agent – Retrieves historical data on past advisories and similar disaster-related events.
+Connector Agent – Integrates with government disaster response systems and repositories.
+Research Agent – Collects real-time information from:
+News sources
+NGOs & relief organizations
+Weather forecasts
+Social media & emergency contacts
+Reader Agent – Extracts and interprets data gathered by the Research Agent.
+Recommender Agent – Generates actionable insights based on the summarized data.
+Interpreter Agent – Analyzes current disaster response deployments and provides situational insights.
+Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
+Chatbot Interface – Presents the final response to the user.
+Process Flow:
+
+The Orchestrator Agent initiates the workflow.
+The Research Agent gathers critical information from various sources.
+The Reader Agent processes and extracts key details.
+The Librarian Agent retrieves historical context.
+The Summarizer Agent condenses the extracted data.
+The Recommender Agent formulates an informed response.
+The Interpreter Agent provides analytical insights.
+The Recommender Agent refines the response based on insights.
+The Translator Agent checks for translation needs.
+The final response is displayed via the Chatbot Interface.
+Response Format:
+You will respond only with the steps followed in a structured manner:
+
+vbnet
+Copy
+Edit
+Step 1: "<Step performed>"  
+Step 2: "<Step performed>"  
+Step 3: "<Step performed>"  
+...  
+Ensure clarity, precision, and completeness in each step. And it should sound like the step has already been performed or bot is performing it now. Make it more question related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. add step like : Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
+Question: {user_question}."""
+                ),
+                # MessagesPlaceholder(variable_name="chat_history"),
+                HumanMessagePromptTemplate.from_template("{user_question}"),
+            ]
+        )
+
+        conversation = LLMChain(
+            llm=groq_chat,
+            prompt=prompt,
+            verbose=True,
+        )
+
+        try:
+            response = conversation.predict(user_question=user_question)
+            message = {"human": user_question, "AI": response}
+            return response
+        except Exception as e:
+            st.error(f"Error generating response: {str(e)}")
+            return "Sorry, I couldn't generate a response right now."
+      
+
 
 def main(address):
     model = st.sidebar.selectbox(
@@ -120,13 +194,17 @@ def main(address):
 
     if user_question:
         with st.spinner("Thinking..."):
+            generated_steps = generate_steps(user_question, model)
             generated_text = generate_content(user_question, model, address)
 
         if generated_text:
-            st.markdown("### Evaluation Results:")
+            st.markdown("### ReliefBOt:")
             st.write(generated_text)
+        
+        if generated_steps:
+            st.markdown("### Evaluation Steps:")
+            st.write(generated_steps)
 
 # Main app flow
 if __name__ == "__main__":
     main(address)
-
