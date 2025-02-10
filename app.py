@@ -41,7 +41,10 @@ if prompt := st.chat_input("What is up?"):
         )
 
         for chunk in stream:
-            assistant_response += chunk["choices"][0]["delta"].get("content", "")
+            # Ensure content is a string before appending
+            chunk_content = chunk["choices"][0]["delta"].get("content", "")
+            if isinstance(chunk_content, str):  # Check if it's a valid string
+                assistant_response += chunk_content
 
         # Once the full response is accumulated, display it
         st.markdown(assistant_response)
