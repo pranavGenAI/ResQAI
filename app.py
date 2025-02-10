@@ -188,16 +188,29 @@ def main(address):
     if user_question:
         with st.spinner("Thinking..."):
             with st.spinner("Orchestrator Agent Invoked"):
-                
+                # Generate the steps and content
                 generated_steps = generate_steps(user_question, model)
                 generated_text = generate_content(user_question, model, address)
 
+        # Display the generated content
         if generated_text:
-            st.markdown("### ReliefBOt:")
+            st.markdown("### ReliefBot:")
             st.write(generated_text)
-        
+
+        # Display the steps in a collapsible box
         if generated_steps:
-            st.write(generated_steps)
+            try:
+                # Assuming generated_steps is a JSON string, let's parse it
+                step_list = json.loads(generated_steps)
+            except json.decoder.JSONDecodeError as e:
+                st.error(f"Error parsing JSON: {str(e)}")
+                step_list = []
+
+            # Create a collapsible box to display steps
+            with st.expander("Steps to Process the Request"):
+                for step in step_list:
+                    st.write(f"Step {step['step_number']}: {step['step_description']}")
+                    time.sleep(1.5)  # Delay between each step before showing the next one
  
 # Main app flow
 if __name__ == "__main__":
