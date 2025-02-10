@@ -6,3 +6,4 @@ groq
 langchain
 langchain-core
 langchain-groq
+agno
