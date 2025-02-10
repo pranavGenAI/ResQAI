@@ -12,7 +12,6 @@ from langchain_core.messages import SystemMessage
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain_groq import ChatGroq
 
-
 # Fetch API keys from Streamlit secrets
 #gemini_api_key = "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"
 groq_api_key = "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"  # Assuming you've stored this in secrets
