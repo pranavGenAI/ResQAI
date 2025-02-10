@@ -8,3 +8,4 @@ langchain-core
 langchain-groq
 agno
 duckduckgo-search
+newspaper4k
