@@ -29,15 +29,22 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Display assistant response in chat message container
+    # Accumulate response from assistant
+    assistant_response = ""
+
+    # Get assistant response in a streaming manner and accumulate the chunks
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
             model=st.session_state["groq_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
+            messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
             stream=True,
         )
-        response = st.write_stream(stream)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+
+        for chunk in stream:
+            assistant_response += chunk["choices"][0]["delta"].get("content", "")
+
+        # Once the full response is accumulated, display it
+        st.markdown(assistant_response)
+
+    # Append the full response to the message history
+    st.session_state.messages.append({"role": "assistant", "content": assistant_response})
