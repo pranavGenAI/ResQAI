@@ -108,7 +108,7 @@ def main(address):
     user_question = st.text_input("Ask a Question", key="user_question")
 
     if user_question:
-        with st.spinner("Evaluating... Please wait."):
+        with st.spinner("Thinking..."):
             generated_text = generate_content(user_question, model, address)
 
         if generated_text:
