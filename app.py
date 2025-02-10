@@ -27,39 +27,37 @@ st.title("Relief Bot")
 
 st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
 st.markdown("")
-st.markdown("""
-    <style>
-        body {
-            background: linear-gradient(to right, #7953cd, #00affa, #0190cd, #764ada);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            margin: 0;
-            height: 100vh;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .animated-gradient-text {
-            font-family: "Graphik Black";
-            font-size: 42px;
-            background: linear-gradient(to right, #7953cd, #00affa, #0190cd, #764ada);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientAnimation 15s ease infinite;
-        }
-    </style>
-""", unsafe_allow_html=True)
+st.markdown('''<style>
+    .stApp > header {
+        background-color: transparent;
+    }
+    .stApp {    
+        background: linear-gradient(45deg, #001f3f 55%, #007f7f 65%, #005f5f 80%);
+        animation: my_animation 20s ease infinite;
+        background-size: 200% 200%;
+        background-attachment: fixed;
+    }
+    
+    @keyframes my_animation {
+        0% {background-position: 0% 0%;}
+        80% {background-position: 80% 80%;}
+    }
+    
+    div.stButton > button:first-child {
+        background: linear-gradient(45deg, #00bfbf 45%, #008f8f 70%);
+        color: white;
+        border: none;
+    }
+    
+    div.stButton > button:hover {
+        background: linear-gradient(45deg, #00a9a9 45%, #007f7f 55%, #005f5f 70%);
+    }
+    
+    div.stButton > button:active {
+        position:relative;
+        top:3px;
+    }    
+</style>''', unsafe_allow_html=True)
 
 
 def fetch_location():
