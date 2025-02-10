@@ -178,6 +178,7 @@ Question: {user_question}
     
 
 
+
 def main(address):
     model = st.sidebar.selectbox(
         "Choose a model", 
@@ -197,7 +198,11 @@ def main(address):
         
         if generated_steps:
             st.markdown("### Evaluation Steps:")
-            st.write(generated_steps)
+            try:
+                # Display the generated steps as collapsible JSON
+                st.json(generated_steps, expanded=False)
+            except Exception as e:
+                st.error(f"Error displaying steps as JSON: {str(e)}")
 
 # Main app flow
 if __name__ == "__main__":
