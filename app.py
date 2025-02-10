@@ -22,9 +22,37 @@ import time
 groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
-st.set_page_config(page_title="Fiscal Forecasting", page_icon=">", layout="wide")
+st.set_page_config(page_title="Relief Bot", page_icon=">", layout="wide")
 st.title("Relief Bot")
+st.set_page_config( layout='wide')
+st.markdown("""
+    <style>
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
+        .animated-gradient-text {
+            font-family: "Graphik Semibold";
+            font-size: 42px;
+            background: linear-gradient(45deg, rgb(245, 58, 126) 30%, rgb(200, 1, 200) 55%, rgb(197, 45, 243) 20%);
+            background-size: 300% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 10s ease-in-out infinite;
+        }
+    </style>
+    <p class="animated-gradient-text">
+        DataViz: Your personal data analyst!
+    </p>
+""", unsafe_allow_html=True)
 def fetch_location():
     try:
         location = get_geolocation()
