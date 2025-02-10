@@ -48,6 +48,7 @@ if lat and lon:
             st.success(f"Address: {address}")
         else:
             st.warning("Address not found.")
+            address = None
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching address: {str(e)}")
         address = None
@@ -114,17 +115,23 @@ def main(address):
             st.markdown("### Evaluation Results:")
             st.write(generated_text)
 
+# Main app flow
 if __name__ == "__main__":
     main(address)
 
-agent = Agent(
-    model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
-    tools=[DuckDuckGoTools(), Newspaper4kTools()],
-    description="You are a relief bot to search for flood-related news.",
-    instructions=["Search for flood-related news based on location: {address}."],
-    markdown=True,
-    show_tool_calls=True,
-    add_datetime_to_instructions=True,
-)
+# Create an agent for the search tool
+if address:
+    agent = Agent(
+        model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
+        tools=[DuckDuckGoTools(), Newspaper4kTools()],
+        description="You are a relief bot to search for flood-related news.",
+        instructions=[f"Search for flood-related news based on location: {address}."],
+        markdown=True,
+        show_tool_calls=True,
+        add_datetime_to_instructions=True,
+    )
 
-st.write(agent.print_response("Search result: ", stream=True))
+    # Display search results with a placeholder to avoid issues with live updates
+    result_placeholder = st.empty()
+    result = agent.print_response(f"Search result for address: {address}", stream=True)
+    result_placeholder.markdown(result)
