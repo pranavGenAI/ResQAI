@@ -15,6 +15,7 @@ from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
+import json
 
 # Fetch API keys from Streamlit secrets
 groq_api_key = "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"
@@ -199,9 +200,11 @@ def main(address):
         if generated_steps:
             st.write(generated_steps)
             st.markdown("### Evaluation Steps:")
+            # Convert the string to a Python dictionary
+            response_data = json.loads(generated_steps)
             try:
                 # Display the generated steps as collapsible JSON
-                st.json(generated_steps, expanded=False)
+                st.json(response_data, expanded=False)
             except Exception as e:
                 st.error(f"Error displaying steps as JSON: {str(e)}")
 
