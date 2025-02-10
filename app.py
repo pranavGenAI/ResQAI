@@ -12,6 +12,12 @@ from langchain_core.messages import SystemMessage
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain_groq import ChatGroq
 
+from agno.agent import Agent
+from agno.models.groq import Groq
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.tools.newspaper4k import Newspaper4kTools
+
+
 # Fetch API keys from Streamlit secrets
 #gemini_api_key = "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"
 groq_api_key = "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"  # Assuming you've stored this in secrets
@@ -122,3 +128,19 @@ def main(address):
 
 if __name__ == "__main__":
     main(address)
+
+
+agent = Agent(
+    model=Groq(id="llama-3.3-70b-versatile", api_key="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"),
+    tools=[DuckDuckGoTools(), Newspaper4kTools()],
+    description="You are a relief bot to search for the news on the internet.",
+    instructions=[
+        "Search the web for the flood related information for loation: {address}. Refer to news article and return the news links"
+    ],
+    markdown=True,
+    show_tool_calls=True,
+    add_datetime_to_instructions=True,
+)
+
+st.write(agent.print_response("Search result: ", stream=True))
+
