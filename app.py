@@ -168,21 +168,11 @@ Question: {user_question}
             prompt=prompt,
             verbose=True,
         )
-
         try:
             response = conversation.predict(user_question=user_question)
-
-            # Try parsing the response as JSON to ensure it's valid
-            try:
-                # Ensure that the response is a valid JSON format
-                json_response = json.loads(response)
-                message = {"human": user_question, "AI": json_response}
-                
-                return json_response
-            except json.JSONDecodeError:
-                # If the response isn't valid JSON, log an error
-                st.error("Received invalid JSON response.")
-                return "Sorry, the response format is incorrect."
+            message = {"human": user_question, "AI": response}
+            st.session_state.chat_history.append(message)
+            return response
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
             return "Sorry, I couldn't generate a response right now."
@@ -206,15 +196,7 @@ def main(address):
         
         if generated_steps:
             st.write(generated_steps)
-            st.markdown("### Evaluation Steps:")
-            # Convert the string to a Python dictionary
-            response_data = json.loads(generated_steps)
-            try:
-                # Display the generated steps as collapsible JSON
-                st.json(response_data, expanded=False)
-            except Exception as e:
-                st.error(f"Error displaying steps as JSON: {str(e)}")
-
+ 
 # Main app flow
 if __name__ == "__main__":
     main(address)
