@@ -171,14 +171,21 @@ Question: {user_question}
 
         try:
             response = conversation.predict(user_question=user_question)
-            message = {"human": user_question, "AI": response}
-            return response
+
+            # Try parsing the response as JSON to ensure it's valid
+            try:
+                # Ensure that the response is a valid JSON format
+                json_response = json.loads(response)
+                message = {"human": user_question, "AI": json_response}
+                
+                return json_response
+            except json.JSONDecodeError:
+                # If the response isn't valid JSON, log an error
+                st.error("Received invalid JSON response.")
+                return "Sorry, the response format is incorrect."
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
             return "Sorry, I couldn't generate a response right now."
-    
-
-
 
 def main(address):
     model = st.sidebar.selectbox(
