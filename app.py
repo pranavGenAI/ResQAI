@@ -111,7 +111,6 @@ Use them to draft your response to help user in getting out of disaster. Show so
             return "Sorry, I couldn't generate a response right now."
         
 def generate_steps(user_question, model):
-
     groq_chat = ChatGroq(groq_api_key=groq_api_key, model_name=model)
 
     if user_question:
@@ -139,7 +138,7 @@ You have multiple specialized agents assisting in the process:
 - Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
 - Chatbot Interface – Presents the final response to the user.
 
-### Process Flow:
+Process Flow:
 
 1. The Orchestrator Agent initiates the workflow.
 2. The Research Agent gathers critical information from various sources.
@@ -152,7 +151,7 @@ You have multiple specialized agents assisting in the process:
 9. The Translator Agent checks for translation needs.
 10. The Orchestrator Agent finalizes the response, ensuring all agents contribute relevant data.
 
-### Response Format:
+Response Format:
 
 You will return only a JSON response structured as follows:
 
@@ -166,10 +165,10 @@ You will return only a JSON response structured as follows:
     {"step": "Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data."}
   ]
 }
-Ensure clarity, precision, and completeness in each step. And it should sound like the step has already been performed or bot is performing it now. Make it more question related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. add step like : Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
-Question: {user_question}."""
+Ensure clarity, precision, and completeness in each step. And it should sound like the step has already been performed or bot is performing it now. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. add step like: Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
+Question: {user_question}
+"""
                 ),
-                # MessagesPlaceholder(variable_name="chat_history"),
                 HumanMessagePromptTemplate.from_template("{user_question}"),
             ]
         )
@@ -187,7 +186,7 @@ Question: {user_question}."""
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
             return "Sorry, I couldn't generate a response right now."
-      
+    
 
 
 def main(address):
