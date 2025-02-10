@@ -134,4 +134,5 @@ if address:
     # Display search results with a placeholder to avoid issues with live updates
     result_placeholder = st.empty()
     result = agent.print_response(f"Search result for address: {address}", stream=True)
+    st.write(result)
     result_placeholder.markdown(result)
