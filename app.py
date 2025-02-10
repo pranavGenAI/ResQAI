@@ -27,38 +27,37 @@ st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png
 
 st.title("Relief Bot")
 
-st.markdown("")
-st.markdown('''<style>
-    .stApp > header {
-        background-color: transparent;
-    }
-    .stApp {    
-        background: linear-gradient(45deg, #001f3f 55%, #007f7f 65%, #005f5f 80%);
-        animation: my_animation 20s ease infinite;
-        background-size: 200% 200%;
-        background-attachment: fixed;
-    }
+# st.markdown('''<style>
+#     .stApp > header {
+#         background-color: transparent;
+#     }
+#     .stApp {    
+#         background: linear-gradient(45deg, #001f3f 55%, #007f7f 65%, #005f5f 80%);
+#         animation: my_animation 20s ease infinite;
+#         background-size: 200% 200%;
+#         background-attachment: fixed;
+#     }
     
-    @keyframes my_animation {
-        0% {background-position: 0% 0%;}
-        80% {background-position: 80% 80%;}
-    }
+#     @keyframes my_animation {
+#         0% {background-position: 0% 0%;}
+#         80% {background-position: 80% 80%;}
+#     }
     
-    div.stButton > button:first-child {
-        background: linear-gradient(45deg, #00bfbf 45%, #008f8f 70%);
-        color: white;
-        border: none;
-    }
+#     div.stButton > button:first-child {
+#         background: linear-gradient(45deg, #00bfbf 45%, #008f8f 70%);
+#         color: white;
+#         border: none;
+#     }
     
-    div.stButton > button:hover {
-        background: linear-gradient(45deg, #00a9a9 45%, #007f7f 55%, #005f5f 70%);
-    }
+#     div.stButton > button:hover {
+#         background: linear-gradient(45deg, #00a9a9 45%, #007f7f 55%, #005f5f 70%);
+#     }
     
-    div.stButton > button:active {
-        position:relative;
-        top:3px;
-    }    
-</style>''', unsafe_allow_html=True)
+#     div.stButton > button:active {
+#         position:relative;
+#         top:3px;
+#     }    
+# </style>''', unsafe_allow_html=True)
 
 
 def fetch_location():
@@ -114,8 +113,8 @@ def generate_content(user_question, model, address):
                     content=f"""You are ReliefBot, an agentic AI specializing in disaster response.ou have multiple specialized agents assisting in the process:
 
 Summarizer Agent – Aggregates and condenses extracted information.
-Librarian Agent – Retrieves historical data on past advisories and similar disaster-related events.
-Connector Agent – Integrates with government disaster response systems and repositories.
+Knowledge Agent – Retrieves historical data on past advisories and similar disaster-related events.
+Data Bridge Agent – Integrates with government disaster response systems and repositories.
 Research Agent – Collects real-time information from:
 News sources
 NGOs & relief organizations
@@ -161,10 +160,10 @@ Role: You are ReliefBot, an agentic AI specializing in disaster response. When a
 
 You have multiple specialized agents assisting in the process:
 
-- Orchestrator Agent – Oversees the entire workflow, invoking necessary agents.
+- Central Control Agent – Oversees the entire workflow, invoking necessary agents.
 - Summarizer Agent – Aggregates and condenses extracted information.
-- Librarian Agent – Retrieves historical data on past advisories and similar disaster-related events.
-- Connector Agent – Integrates with government disaster response systems and repositories.
+- Knowledge Agent – Retrieves historical data on past advisories and similar disaster-related events.
+- Data Bridge Agent – Integrates with government disaster response systems and repositories.
 - Research Agent – Collects real-time information from:
   - News sources
   - NGOs & relief organizations
@@ -174,25 +173,24 @@ You have multiple specialized agents assisting in the process:
 - Recommender Agent – Generates actionable insights based on the summarized data.
 - Interpreter Agent – Analyzes current disaster response deployments and provides situational insights.
 - Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
-- Chatbot Interface – Presents the final response to the user.
 
 Process Flow:
 
-1. The Orchestrator Agent initiates the workflow.
+1. The Central Control Agent initiates the workflow.
 2. The Research Agent gathers critical information from various sources.
 3. The Reader Agent processes and extracts key details.
-4. The Librarian Agent retrieves historical context.
+4. The Knowledge Agent retrieves historical context.
 5. The Summarizer Agent condenses the extracted data.
 6. The Recommender Agent formulates an informed response.
 7. The Interpreter Agent provides analytical insights.
 8. The Recommender Agent refines the response based on insights.
 9. The Translator Agent checks for translation needs.
-10. The Orchestrator Agent finalizes the response, ensuring all agents contribute relevant data.
+10. The Central Control Agent finalizes the response, ensuring all agents contribute relevant data.
 
 Response Format:
 
 You will return only a JSON response structured as follows: Step number and Step performed only
-Ensure steps sounds like bot has performed it and make it little technical by adding function called for invoking. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
+Ensure steps sounds like agent has performed it and make it little technical by adding function called for invoking. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
 Question: {user_question}
 """
                 ),
