@@ -24,7 +24,6 @@ open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="Relief Bot", page_icon=">", layout="wide")
 st.title("Relief Bot")
-st.set_page_config( layout='wide')
 st.markdown("""
     <style>
         @keyframes gradientAnimation {
