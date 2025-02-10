@@ -191,18 +191,26 @@ def main(address):
             generated_steps = generate_steps(user_question, model)
             generated_text = generate_content(user_question, model, address)
 
-        # Display the steps one by one with 1.5 seconds delay
         if generated_steps:
-            step_list = json.loads(generated_steps)
-            with st.expander("Process Flow", expanded=True):
-                for step in step_list:
-                    st.write(f"Step {step['step_number']}: {step['step_performed']}")
-                    time.sleep(1.5)
+            st.write("Generated Steps: ")
+            st.json(generated_steps)  # Log the steps to check if they're valid JSON
 
-        # Once all steps are displayed, display the generated content
+            try:
+                # Try to parse the generated_steps as JSON
+                step_list = json.loads(generated_steps)
+            except json.decoder.JSONDecodeError as e:
+                st.error(f"Error parsing JSON: {str(e)}")
+                step_list = []
+
+            for step in step_list:
+                with st.expander(f"Step {step['step_number']}"):
+                    st.write(step['step_description'])
+                    time.sleep(1.5)  # Delay between each step
+
         if generated_text:
-            st.markdown("### ReliefBot Response:")
+            st.markdown("### ReliefBot:")
             st.write(generated_text)
+
  
 # Main app flow
 if __name__ == "__main__":
