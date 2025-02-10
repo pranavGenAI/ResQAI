@@ -29,6 +29,12 @@ st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png
 st.markdown("")
 st.markdown("""
     <style>
+        body {
+            background: linear-gradient(to right, #7953cd 20%, #00affa 30%, #0190cd 70%, #764ada 80%);
+            background-size: 300% 200%;
+            animation: gradientAnimation 10s ease-in-out infinite;
+        }
+
         @keyframes gradientAnimation {
             0% {
                 background-position: 0% 50%;
@@ -51,9 +57,6 @@ st.markdown("""
             animation: gradientAnimation 10s ease-in-out infinite;
         }
     </style>
-    <p class="animated-gradient-text">
-        Help those in need!
-    </p>
 """, unsafe_allow_html=True)
 
 def fetch_location():
