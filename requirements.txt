@@ -1,3 +1,8 @@
 streamlit-javascript
 geopy
 streamlit-js-eval
+requests
+groq
+langchain
+langchain-core
+langchain-groq
