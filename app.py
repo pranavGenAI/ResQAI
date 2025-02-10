@@ -191,18 +191,18 @@ def main(address):
             time.sleep(2.5)
             with st.spinner("Orchestrator Agent Invoked"):
                 time.sleep(2.5)
-                with st.spinner("Orchestrator Agent Monitoring"):
-                    time.sleep(1)
-                    with st.spinner("Summarizer Agent Invoked"):
+            with st.spinner("Orchestrator Agent Monitoring"):
+                time.sleep(1)
+                with st.spinner("Summarizer Agent Invoked"):
+                    time.sleep(2.5)
+                    with st.spinner("Utility Agents Invoked"):
                         time.sleep(2.5)
-                        with st.spinner("Utility Agents Invoked"):
-                            time.sleep(2.5)
-                    with st.spinner("Recommender Agent Invoked"):
+                with st.spinner("Recommender Agent Invoked"):
+                    time.sleep(2.5)
+                    with st.spinner("Utility Agents Invoked"):
                         time.sleep(2.5)
-                        with st.spinner("Utility Agents Invoked"):
-                            time.sleep(2.5)
             with st.spinner("Orchestrator Ensuring Response Completeness"):
-                time.sleep(2.5)
+                time.sleep(3.5)
         with st.spinner("Chatbot loading response..."):
                         
                 # Generate the steps and content
