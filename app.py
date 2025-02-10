@@ -87,7 +87,7 @@ Recommender Agent – Generates actionable insights based on the summarized data
 Interpreter Agent – Analyzes current disaster response deployments and provides situational insights.
 Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
 
-Use them to draft your response to help user in getting out of disaster. Show some numbers like how many teams are deployed and other metrics. Based on location (location: {address}) provide contact details of nearest relief center and government or NGOs contact details."""
+Use them to draft your response to help user in getting out of disaster. Show some numbers like how many teams are deployed and other metrics. Based on location (location: {address}) provide contact details of nearest relief center and government or NGOs contact details. Do not let user know about agents just provide well formatted answer"""
                 ),
                 MessagesPlaceholder(variable_name="chat_history"),
                 HumanMessagePromptTemplate.from_template("{user_question}"),
