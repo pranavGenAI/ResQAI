@@ -1,11 +1,22 @@
 import streamlit as st
+from streamlit_js_eval import get_geolocation
+from geopy.geocoders import Nominatim
 import requests
 
-st.title("Get User Location")
+st.title("Get User Location in Streamlit")
+
+location = get_geolocation()
+
+if location:
+    lat, lon = location["coords"]["latitude"], location["coords"]["longitude"]
+    st.success(f"Latitude: {lat}, Longitude: {lon}")
+else:
+    st.warning("Click the button and allow location access.")
+
 
 # Get coordinates
-latitude = st.number_input("Latitude", format="%.6f")
-longitude = st.number_input("Longitude", format="%.6f")
+latitude = lat
+longitude = lon
 
 if st.button("Get Address"):
     api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
