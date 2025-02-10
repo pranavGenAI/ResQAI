@@ -23,9 +23,10 @@ groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="Relief Bot", page_icon=">", layout="wide")
+st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
+
 st.title("Relief Bot")
 
-st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
 st.markdown("")
 st.markdown('''<style>
     .stApp > header {
