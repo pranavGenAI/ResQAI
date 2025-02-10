@@ -188,20 +188,21 @@ def main(address):
 
     if user_question:
         with st.spinner("Thinking..."):
-            time.sleep(1.5)
+            time.sleep(2.5)
             with st.spinner("Orchestrator Agent Invoked"):
-                time.sleep(1.5)
+                time.sleep(2.5)
                 with st.spinner("Orchestrator Agent Monitoring"):
+                    time.sleep(1)
                     with st.spinner("Summarizer Agent Invoked"):
-                        time.sleep(1.5)
+                        time.sleep(2.5)
                         with st.spinner("Utility Agents Invoked"):
-                            time.sleep(1.5)
+                            time.sleep(2.5)
                     with st.spinner("Recommender Agent Invoked"):
-                        time.sleep(1.5)
+                        time.sleep(2.5)
                         with st.spinner("Utility Agents Invoked"):
-                            time.sleep(1.5)
+                            time.sleep(2.5)
             with st.spinner("Orchestrator Ensuring Response Completeness"):
-                time.sleep(1.5)
+                time.sleep(2.5)
         with st.spinner("Chatbot loading response..."):
                         
                 # Generate the steps and content
