@@ -109,7 +109,7 @@ def generate_content(user_question, model, address):
     if user_question:
         prompt = ChatPromptTemplate.from_messages(
             [
-                SystemMessage(
+                SystemMessage(f
                     content=f"""You are ReliefBot, an agentic AI specializing in disaster response.ou have multiple specialized agents assisting in the process:
 
 Summarizer Agent – Aggregates and condenses extracted information.
@@ -207,7 +207,6 @@ Question: {user_question}
         try:
             response = conversation.predict(user_question=user_question)
             message = {"human": user_question, "AI": response}
-            st.session_state.chat_history.append(message)
             return response
         except Exception as e:
             st.error(f"Error generating response: {str(e)}")
