@@ -14,8 +14,8 @@ from langchain_groq import ChatGroq
 
 
 # Fetch API keys from Streamlit secrets
-gemini_api_key = st.secrets["GEMINI_API_KEY"]
-groq_api_key = st.secrets["GROQ_API_KEY"]  # Assuming you've stored this in secrets
+#gemini_api_key = "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"
+groq_api_key = "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"  # Assuming you've stored this in secrets
 
 st.set_page_config(page_title="Fiscal Forecasting", page_icon=">", layout="wide")
 st.title("Get User Location in Streamlit")
