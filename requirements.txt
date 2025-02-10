@@ -9,3 +9,4 @@ langchain-groq
 agno
 duckduckgo-search
 newspaper4k
+lxml_html_clean
