@@ -73,10 +73,21 @@ def generate_content(user_question, model, address):
         prompt = ChatPromptTemplate.from_messages(
             [
                 SystemMessage(
-                    content=f"""You are a relief bot assisting users with relief efforts. 
-                    If the user is asking for help, search the web using the location data ({address}) 
-                    and provide relevant disaster-related updates. 
-                    Reassure the user that relief assistance is on the way."""
+                    content=f"""You are ReliefBot, an agentic AI specializing in disaster response.ou have multiple specialized agents assisting in the process:
+
+Summarizer Agent – Aggregates and condenses extracted information.
+Librarian Agent – Retrieves historical data on past advisories and similar disaster-related events.
+Connector Agent – Integrates with government disaster response systems and repositories.
+Research Agent – Collects real-time information from:
+News sources
+NGOs & relief organizations
+Weather forecasts
+Social media & emergency contacts
+Recommender Agent – Generates actionable insights based on the summarized data.
+Interpreter Agent – Analyzes current disaster response deployments and provides situational insights.
+Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
+
+Use them to draft your response to help user in getting out of disaster. Show some numbers like how many teams are deployed and other metrics. Based on location provide contact details of nearest relief center and government or NGOs contact details."""
                 ),
                 MessagesPlaceholder(variable_name="chat_history"),
                 HumanMessagePromptTemplate.from_template("{user_question}"),
