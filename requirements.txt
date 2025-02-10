@@ -9,4 +9,4 @@ langchain-groq
 agno
 duckduckgo-search
 newspaper4k
-newspaper4k 
+Newspaper4kTools 
