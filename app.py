@@ -197,6 +197,10 @@ def main(address):
                     time.sleep(2.5)
                     with st.spinner("Utility Agents Invoked"):
                         time.sleep(2.5)
+            with st.spinner("Orchestrator Agent Invoked"):
+                time.sleep(2.5)
+            with st.spinner("Orchestrator Agent Monitoring"):
+                time.sleep(1)
                 with st.spinner("Recommender Agent Invoked"):
                     time.sleep(2.5)
                     with st.spinner("Utility Agents Invoked"):
