@@ -30,9 +30,11 @@ st.markdown("")
 st.markdown("""
     <style>
         body {
-            background: linear-gradient(to right, #7953cd 20%, #00affa 30%, #0190cd 70%, #764ada 80%);
-            background-size: 300% 200%;
-            animation: gradientAnimation 10s ease-in-out infinite;
+            background: linear-gradient(to right, #7953cd, #00affa, #0190cd, #764ada);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            margin: 0;
+            height: 100vh;
         }
 
         @keyframes gradientAnimation {
@@ -50,14 +52,15 @@ st.markdown("""
         .animated-gradient-text {
             font-family: "Graphik Black";
             font-size: 42px;
-            background: linear-gradient(to right, #7953cd 20%, #00affa 30%, #0190cd 70%, #764ada 80%);
-            background-size: 300% 200%;
+            background: linear-gradient(to right, #7953cd, #00affa, #0190cd, #764ada);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientAnimation 10s ease-in-out infinite;
+            animation: gradientAnimation 15s ease infinite;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 def fetch_location():
     try:
@@ -218,7 +221,7 @@ def main(address):
         ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
     )
 
-    user_question = st.text_input("Ask a Question", key="user_question")
+    user_question = st.text_input("Hi, how can I help you?", key="user_question")
 
     if user_question:
         with st.spinner("Thinking..."):
