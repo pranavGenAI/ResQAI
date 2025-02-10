@@ -11,71 +11,64 @@ from langchain_core.prompts import (
 from langchain_core.messages import SystemMessage
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain_groq import ChatGroq
-
 from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
 
-
 # Fetch API keys from Streamlit secrets
-#gemini_api_key = "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"
-groq_api_key = "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"  # Assuming you've stored this in secrets
+groq_api_key = "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"
+open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="Fiscal Forecasting", page_icon=">", layout="wide")
 st.title("Relief Bot")
 
-# Fetch user location
-location = get_geolocation()
+def fetch_location():
+    try:
+        location = get_geolocation()
+        if location:
+            return location["coords"]["latitude"], location["coords"]["longitude"]
+        else:
+            st.warning("Location access denied or unavailable.")
+            return None, None
+    except Exception as e:
+        st.error(f"Error fetching location: {str(e)}")
+        return None, None
 
-if location:
-    lat, lon = location["coords"]["latitude"], location["coords"]["longitude"]
-else:
-    lat, lon = None, None
-    st.warning("Click the button and allow location access.")
+lat, lon = fetch_location()
 
-# Get coordinates
-if lat is not None and lon is not None:
-    api_key = "ab5b5ba90347427cb889b0b4c136e0bf"  # Replace with your OpenCage API key
-    url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={api_key}"
-    response = requests.get(url)
-    data = response.json()
-
-    if response.status_code == 200 and data["results"]:
-        address = data["results"][0]["formatted"]
-        st.success(f"Address: {address}")
-    else:
+if lat and lon:
+    try:
+        url = f"https://api.opencagedata.com/geocode/v1/json?q={lat}+{lon}&key={open_cage_api_key}"
+        response = requests.get(url)
+        data = response.json()
+        
+        if response.status_code == 200 and data["results"]:
+            address = data["results"][0]["formatted"]
+            st.success(f"Address: {address}")
+        else:
+            st.warning("Address not found.")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching address: {str(e)}")
         address = None
-        st.warning("Address not found.")
 else:
     address = None
 
-# Sidebar - Model Selection
-st.sidebar.image(
-    "https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=70
-)
-st.sidebar.title("Model Selection")
-
-
 def generate_content(user_question, model, address):
-    """Generates a response based on user input and location data."""
     conversational_memory_length = 5
     memory = ConversationBufferWindowMemory(
         k=conversational_memory_length, memory_key="chat_history", return_messages=True
     )
 
-    # Initialize session state for chat history
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
     else:
         for message in st.session_state.chat_history:
             memory.save_context({"input": message["human"]}, {"output": message["AI"]})
 
-    # Initialize Groq chat model
     groq_chat = ChatGroq(groq_api_key=groq_api_key, model_name=model)
 
     if user_question:
-        # Create a prompt with user location context
         prompt = ChatPromptTemplate.from_messages(
             [
                 SystemMessage(
@@ -89,7 +82,6 @@ def generate_content(user_question, model, address):
             ]
         )
 
-        # Generate AI response
         conversation = LLMChain(
             llm=groq_chat,
             prompt=prompt,
@@ -97,50 +89,42 @@ def generate_content(user_question, model, address):
             memory=memory,
         )
 
-        response = conversation.predict(user_question=user_question)
-        message = {"human": user_question, "AI": response}
-        st.session_state.chat_history.append(message)
-
-        return response
-
+        try:
+            response = conversation.predict(user_question=user_question)
+            message = {"human": user_question, "AI": response}
+            st.session_state.chat_history.append(message)
+            return response
+        except Exception as e:
+            st.error(f"Error generating response: {str(e)}")
+            return "Sorry, I couldn't generate a response right now."
 
 def main(address):
-    """Main function to run the Streamlit app."""
-    st.markdown("")
-    
     model = st.sidebar.selectbox(
-        "Choose a model",
-        ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
+        "Choose a model", 
+        ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
     )
-
-    generated_text = ""
 
     user_question = st.text_input("Ask a Question", key="user_question")
 
     if user_question:
-        with st.spinner("Evaluating..."):
+        with st.spinner("Evaluating... Please wait."):
             generated_text = generate_content(user_question, model, address)
 
         if generated_text:
             st.markdown("### Evaluation Results:")
             st.write(generated_text)
 
-
 if __name__ == "__main__":
     main(address)
 
-
 agent = Agent(
-    model=Groq(id="llama-3.3-70b-versatile", api_key="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"),
+    model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
     tools=[DuckDuckGoTools(), Newspaper4kTools()],
-    description="You are a relief bot to search for the news on the internet.",
-    instructions=[
-        "Search the web for the flood related information for loation: {address}. Refer to news article and return the news links"
-    ],
+    description="You are a relief bot to search for flood-related news.",
+    instructions=["Search for flood-related news based on location: {address}."],
     markdown=True,
     show_tool_calls=True,
     add_datetime_to_instructions=True,
 )
 
 st.write(agent.print_response("Search result: ", stream=True))
-
