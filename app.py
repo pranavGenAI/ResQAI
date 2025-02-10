@@ -149,7 +149,7 @@ The Recommender Agent formulates an informed response.
 The Interpreter Agent provides analytical insights.
 The Recommender Agent refines the response based on insights.
 The Translator Agent checks for translation needs.
-The final response is displayed via the Chatbot Interface.
+Orchestrator Agent sends final repsonse to chatbot
 Response Format:
 You will respond only with the steps followed in a structured manner:
 
