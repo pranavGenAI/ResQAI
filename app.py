@@ -1,4 +1,3 @@
-import time
 import streamlit as st
 from streamlit_js_eval import get_geolocation
 import requests
@@ -188,27 +187,17 @@ def main(address):
 
     if user_question:
         with st.spinner("Thinking..."):
-            time.sleep(1.5)
-            with st.spinner("Orchestrator agent invoked..."):
+            with st.spinner("Orchestrator Agent Invoked"):
                 
                 generated_steps = generate_steps(user_question, model)
                 generated_text = generate_content(user_question, model, address)
 
-        if generated_steps:
-            st.write("Generated Steps: ")
-            st.json(generated_steps)  # Log the steps to check if they're valid JSON
-
-            try:
-                # Try to parse the generated_steps as JSON
-                step_list = json.loads(generated_steps)
-            except json.decoder.JSONDecodeError as e:
-                st.error(f"Error parsing JSON: {str(e)}")
-                step_list = []
-
         if generated_text:
-            st.markdown("### ReliefBot:")
+            st.markdown("### ReliefBOt:")
             st.write(generated_text)
-
+        
+        if generated_steps:
+            st.write(generated_steps)
  
 # Main app flow
 if __name__ == "__main__":
