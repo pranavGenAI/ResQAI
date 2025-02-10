@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 from streamlit_js_eval import get_geolocation
 import requests
@@ -190,12 +191,18 @@ def main(address):
             generated_steps = generate_steps(user_question, model)
             generated_text = generate_content(user_question, model, address)
 
-        if generated_text:
-            st.markdown("### ReliefBOt:")
-            st.write(generated_text)
-        
+        # Display the steps one by one with 1.5 seconds delay
         if generated_steps:
-            st.write(generated_steps)
+            step_list = json.loads(generated_steps)
+            with st.expander("Process Flow", expanded=True):
+                for step in step_list:
+                    st.write(f"Step {step['step_number']}: {step['step_performed']}")
+                    time.sleep(1.5)
+
+        # Once all steps are displayed, display the generated content
+        if generated_text:
+            st.markdown("### ReliefBot Response:")
+            st.write(generated_text)
  
 # Main app flow
 if __name__ == "__main__":
