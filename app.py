@@ -23,7 +23,7 @@ groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="Relief Bot", page_icon=">", layout="wide")
-st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
+#st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
 st.image("https://cdnlogo.com/logos/a/48/accenture.svg", width=150)
 
 st.title("Relief Bot")
@@ -217,7 +217,7 @@ def main(address):
         "Choose a model", 
         ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
     )
-
+    st.sidebar.image("https://cdnlogo.com/logos/a/48/accenture.svg", caption="Sidebar Image", use_column_width=True)
     user_question = st.text_input("Hi, how can I help you? (Try prompts like: We need help! There's a flood in my area.)", key="user_question")
 
     if user_question:
