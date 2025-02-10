@@ -153,7 +153,7 @@ Process Flow:
 
 Response Format:
 
-You will return only a JSON response structured as follows: key (Steps number) and value (Step performed)
+You will return only a JSON response structured as follows: Step number and value Step performed
 Ensure clarity, precision, and completeness in each step. And it should sound like the step has already been performed or bot is performing it now. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. add step like: Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
 Question: {user_question}
 """
@@ -197,6 +197,7 @@ def main(address):
             st.write(generated_text)
         
         if generated_steps:
+            st.write(generated_steps)
             st.markdown("### Evaluation Steps:")
             try:
                 # Display the generated steps as collapsible JSON
