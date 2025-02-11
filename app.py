@@ -251,7 +251,10 @@ def main(address):
             # Create a collapsible box to display steps
             with st.expander("Agentic AI Steps Details (Click to expand)"):
                 st.write(generated_steps)
-            st.write("Please note that, for demonstration purposes, the research agent is deliberately configured to use the latest available disaster-related data for your location and may not reflect real-time updates, as the likelihood of a disaster occurring during the demo is very low.") 
+            
+            st.markdown("<p style='font-size:12px;'><em>Please note that, for demonstration purposes, the research agent is deliberately configured to use the latest available disaster-related data for your location and may not reflect real-time updates, as the likelihood of a disaster occurring during the demo is very low.</em></p>", unsafe_allow_html=True)
+
+            # st.write("Please note that, for demonstration purposes, the research agent is deliberately configured to use the latest available disaster-related data for your location and may not reflect real-time updates, as the likelihood of a disaster occurring during the demo is very low.") 
         # Display the generated content
         if generated_text:
             st.markdown("### ReliefBot:")
