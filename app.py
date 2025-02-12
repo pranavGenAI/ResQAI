@@ -191,7 +191,7 @@ Process Flow:
 Response Format:
 
 You will return only a JSON response structured as follows: Step number and Step performed only
-Ensure steps sounds like agent has performed it and make it little technical by adding function called for invoking. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
+Ensure steps sounds like agent has performed it and make it little technical by adding function called for invoking such as duckduckgo_search for web search. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
 Question: {user_question}
 """
                 ),
