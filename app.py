@@ -61,6 +61,36 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    .sticky-header {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    .sticky-header img {
+        width: 100px; /* Adjust image size */
+    }
+    .sticky-header p {
+        font-size: 12px; /* Smaller text */
+        font-style: italic;
+        margin-top: 5px;
+        color: #555;
+    }
+    </style>
+    <div class="sticky-header">
+        <img src="https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png">
+        <p>Because Every Second Counts !!...</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 def fetch_location():
