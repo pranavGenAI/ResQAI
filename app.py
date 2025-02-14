@@ -24,7 +24,7 @@ open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="Relief Bot", page_icon=">", layout="wide")
 #st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
-st.image("https://logos-world.net/wp-content/uploads/2020/07/Accenture-Logo.png", width=75)
+st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=75)
 
 st.title("Relief Bot")
 
