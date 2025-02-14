@@ -84,7 +84,8 @@ if lat and lon:
         
         if response.status_code == 200 and data["results"]:
             address = data["results"][0]["formatted"]
-            st.warning(f"<small>User connected from: {address}</small>", unsafe_allow_html=True)
+            st.markdown(f'<p style="font-size:12px; color:#856404; background-color:#fff3cd; padding:10px; border-radius:5px;">⚠ User connected from: {address}</p>', unsafe_allow_html=True)    
+        # st.warning(f"<small>User connected from: {address}</small>", unsafe_allow_html=True)
         else:
             st.warning("Address not found.")
             address = None
