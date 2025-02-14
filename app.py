@@ -28,8 +28,6 @@ col1, col2, col3 = st.columns([20, 50, 30])
 with col1:
     st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
     st.write("_Because Every Second Counts !!..._")
-with col3:
-    lat, lon = fetch_location()
 
 
 def fetch_location():
@@ -44,6 +42,8 @@ def fetch_location():
         st.error(f"Error fetching location: {str(e)}")
         return None, None
 
+with col3:
+    lat, lon = fetch_location()
 
 
 if lat and lon:
