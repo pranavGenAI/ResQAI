@@ -22,11 +22,48 @@ import time
 groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
-st.set_page_config(page_title="ResQ AI", page_icon=">", layout="wide")
+# st.set_page_config(page_title="ResQ AI", page_icon=">", layout="wide")
 #st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
-st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
-st.write("_Because Every Second Counts !!..._")
+# st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
+# st.write("_Because Every Second Counts !!..._")
 
+st.set_page_config(page_title="ResQ AI", page_icon="https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", layout="wide")
+
+# Custom CSS for sticky header
+st.markdown(
+    """
+    <style>
+    .sticky-header {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    .sticky-header img {
+        width: 100px; /* Adjust image size */
+    }
+    .sticky-header p {
+        font-size: 12px; /* Smaller text */
+        font-style: italic;
+        margin-top: 5px;
+        color: #555;
+    }
+    </style>
+    <div class="sticky-header">
+        <img src="https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png">
+        <p>Because Every Second Counts !!...</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Dummy content to enable scrolling
+st.write("# Welcome to ResQ AI")
+st.write("Scroll down to test the sticky header..." * 50)
 # st.title("Relief Bot")
 
 # st.markdown('''<style>
