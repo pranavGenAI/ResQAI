@@ -22,6 +22,19 @@ import time
 groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 st.set_page_config(page_title="ResQ AI", page_icon="https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", layout="wide")
+
+st.markdown(
+    """
+    <style>
+        body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stSidebar"] {
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 def fetch_location():
     try:
         location = get_geolocation()
