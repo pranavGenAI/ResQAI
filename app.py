@@ -35,7 +35,7 @@ def fetch_location():
         return None, None
 
 #st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
-col1, col2, col3 = st.columns([30, 10, 30])
+col1, col2, col3 = st.columns([30, 5, 30])
 with col1:
     st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
     st.write("_Because Every Second Counts !!..._")
