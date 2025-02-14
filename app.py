@@ -84,7 +84,7 @@ if lat and lon:
         
         if response.status_code == 200 and data["results"]:
             address = data["results"][0]["formatted"]
-            st.warning(f"User connected from: {address}")
+            st.warning(f"<small>User connected from: {address}</small>", unsafe_allow_html=True)
         else:
             st.warning("Address not found.")
             address = None
