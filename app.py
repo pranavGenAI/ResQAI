@@ -22,14 +22,6 @@ import time
 groq_api_key = "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"
 open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 st.set_page_config(page_title="ResQ AI", page_icon="https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", layout="wide")
-
-#st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
-col1, col2, col3 = st.columns([20, 50, 30])
-with col1:
-    st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
-    st.write("_Because Every Second Counts !!..._")
-
-
 def fetch_location():
     try:
         location = get_geolocation()
@@ -42,9 +34,14 @@ def fetch_location():
         st.error(f"Error fetching location: {str(e)}")
         return None, None
 
+#st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
+col1, col2, col3 = st.columns([30, 30, 30])
+with col1:
+    st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=140)
+    st.write("_Because Every Second Counts !!..._")
+
 with col3:
     lat, lon = fetch_location()
-
 
 if lat and lon:
     try:
