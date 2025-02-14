@@ -127,7 +127,7 @@ Recommender Agent – Generates actionable insights based on the summarized data
 Interpreter Agent – Analyzes current disaster response deployments and provides situational insights.
 Translator Agent – Determines if translation is needed and ensures linguistic accuracy.
 
-Use them to draft your response to help user in getting out of disaster. Show some numbers like how many teams are deployed and other metrics. Based on location (location: {address}) provide contact details of nearest relief center and government or NGOs contact details. Do not let user know about agents just provide well formatted answer."""
+Use them to draft your response to help user in getting out of disaster. Show some numbers like how many teams are deployed and other metrics. Detailed response. Based on location (location: {address}) provide contact details of nearest relief center and government or NGOs contact details. Do not let user know about agents just provide well formatted answer."""
                 ),
                 MessagesPlaceholder(variable_name="chat_history"),
                 HumanMessagePromptTemplate.from_template("{user_question}"),
@@ -193,7 +193,7 @@ Process Flow:
 Response Format:
 
 You will return only a JSON response structured as follows: Step number and Step performed only
-Ensure steps sounds like agent has performed it and make it little technical by adding function called for invoking such as duckduckgo_search for web search. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Orchestrator Agent has finalized the response and ensured all agents have contributed relevant data.
+Ensure steps sounds like agent has performed it and they are collaborating to arrive at solution. Make it little bit of technical by adding function called for invoking such as duckduckgo_search for web search. And it should sound like the step has already been performed that is in past tense. Make it more question-related response. What exactly is being done write that. Also ensure to mention orchestrator role in orchestrating this wherever it is required. Second last step is Central Control Agent has finalized the response and ensured all agents have contributed relevant data.
 Question: {user_question}
 """
                 ),
@@ -259,7 +259,7 @@ def main(address):
             # st.write("Please note that, for demonstration purposes, the research agent is deliberately configured to use the latest available disaster-related data for your location and may not reflect real-time updates, as the likelihood of a disaster occurring during the demo is very low.") 
         # Display the generated content
         if generated_text:
-            st.markdown("### ReliefBot:")
+            st.markdown("### ResQ AI:")
             st.write(generated_text)
 
         # Display the steps in a collapsible box
