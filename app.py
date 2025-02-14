@@ -24,7 +24,7 @@ open_cage_api_key = "ab5b5ba90347427cb889b0b4c136e0bf"
 
 st.set_page_config(page_title="ResQ AI", page_icon=">", layout="wide")
 #st.image("https://www.vgen.it/wp-content/uploads/2021/04/logo-accenture-ludo.png", width=150)
-st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=120)
+st.image("https://i.ibb.co/TDSrHVy5/Res-QAI-PNG.png", width=200)
 st.write("_Because Every Second Counts !!..._")
 
 # st.title("Relief Bot")
