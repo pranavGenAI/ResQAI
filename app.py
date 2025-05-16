@@ -17,6 +17,9 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
 import json
 import time
+from langchain.memory import ConversationBufferWindowMemory
+from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
+from langchain.chat_models import ChatGroq  # Required for Groq chat interface
 
 # Fetch API keys from Streamlit secrets
 groq_api_key = "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"
